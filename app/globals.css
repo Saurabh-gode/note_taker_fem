@@ -1,10 +1,5 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -19,8 +14,171 @@
   }
 }
 
+/* Inter */
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/inter/static/Inter_18pt-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/inter/static/Inter_18pt-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/inter/static/Inter_18pt-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/inter/static/Inter_18pt-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* Noto Serif */
+@font-face {
+  font-family: 'Noto Serif';
+  src: url('/fonts/noto-serif/static/NotoSerif-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Noto Serif';
+  src: url('/fonts/noto-serif/static/NotoSerif-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Noto Serif';
+  src: url('/fonts/noto-serif/static/NotoSerif-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Noto Serif';
+  src: url('/fonts/noto-serif/static/NotoSerif-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* Source Code Pro */
+@font-face {
+  font-family: 'Source Code Pro';
+  src: url('/fonts/source-code-pro/static/SourceCodePro-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Source Code Pro';
+  src: url('/fonts/source-code-pro/static/SourceCodePro-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Source Code Pro';
+  src: url('/fonts/source-code-pro/static/SourceCodePro-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Source Code Pro';
+  src: url('/fonts/source-code-pro/static/SourceCodePro-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+
 body {
-  background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--background);
+  font-family: Inter, Arial, sans-serif;
+}
+
+
+/* Text */
+h1 {
+  @apply text-2xl leading-[120%] font-bold tracking-[-0.5px];
+}
+
+h2 {
+  @apply text-xl leading-[120%] font-bold tracking-[-0.5px];
+}
+
+h3 {
+  @apply text-base leading-[120%] font-semibold tracking-[-0.3px];
+}
+
+h4 {
+  @apply text-sm tracking-[-0.2px] leading-[120%] font-medium;
+}
+
+h5 {
+  @apply text-sm tracking-[-0.2px] leading-[120%] font-normal;
+}
+
+h6 {
+  @apply text-xs tracking-[-0.2px] leading-[120%] font-normal;
+}
+
+input {
+  @apply px-4 py-3 rounded-lg border border-neutral-300;
+}
+
+/* line */
+hr {
+  @apply border-t border-neutral-200 my-4 w-full h-[1px];
+}
+
+.vertical {
+  @apply border-r border-neutral-100 w-[1px] flex;
+}
+
+/* button */
+.primary-button {
+  @apply flex items-center justify-center bg-blue-500 text-white py-3 px-4 text-sm tracking-[-0.2px] leading-[120%] font-medium;
+}
+
+.secondary-button {
+  @apply flex items-center justify-center bg-red-500 text-white py-3 px-4 text-sm tracking-[-0.2px] leading-[120%] font-medium;
+}
+
+.neutral-button {
+  @apply flex items-center justify-center dark:text-neutral-500 text-neutral-600 py-3 px-4 text-base tracking-[0.5px] leading-[100%] font-medium border border-none bg-neutral-100 dark:bg-neutral-200;
+}
+
+.tag {
+  @apply bg-neutral-200 dark:bg-neutral-700 px-1.5 rounded-sm;
+}
+
+
+/* Modal.css */
+.modal-wrapper {
+  @apply w-[500px] h-[600px];
+}
+
+.modal {
+  @apply bg-white h-full w-full rounded-[15px] p-[15px];
+}
+
+/* styles/globals.css */
+.modal-overlay {
+  @apply fixed top-0 left-0 w-full h-full flex justify-center items-center bg-neutral-950/50 transition-opacity duration-300 ease-in-out;
+}
+
+.modal {
+  @apply bg-blue-500 p-5 rounded-lg h-fit w-fit;
 }
