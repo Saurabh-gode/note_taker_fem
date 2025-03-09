@@ -3,14 +3,35 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #0E121B;
     --foreground: #ededed;
+  }
+}
+
+@layer utilities {
+  .scrollbar::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .scrollbar::-webkit-scrollbar-track {
+    border-radius: 100vh;
+    background: none;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    background: #404040;
+    border-radius: 100vh;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb:hover {
+    opacity: 50;
   }
 }
 
@@ -108,6 +129,13 @@ body {
   font-family: Inter, Arial, sans-serif;
 }
 
+input {
+  all: unset;
+}
+
+button {
+  @apply pointer-events-auto cursor-pointer;
+}
 
 /* Text */
 h1 {
@@ -140,7 +168,119 @@ input {
 
 /* line */
 hr {
-  @apply border-t border-neutral-200 my-4 w-full h-[1px];
+  @apply border-t border-neutral-700/70 my-4 w-full h-[1px];
+}
+
+.ProseMirror.ProseMirror-focused {
+  outline: #404040;
+}
+
+
+.tiptap .ProseMirror {
+  height: 100%;
+  min-height: 100%;
+}
+
+.tiptap p.is-editor-empty:first-child::before {
+  color: #adb5bd;
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+
+/* Basic editor styles */
+.tiptap:first-child {
+  @apply mt-0;
+}
+
+/* List styles */
+.tiptap ul,
+.tiptap ol {
+  @apply pl-4 pr-0 my-5 mr-4;
+}
+
+.tiptap li p {
+  @apply mt-1 mb-1;
+}
+
+/* Heading styles */
+.tiptap h1,
+.tiptap h2,
+.tiptap h3,
+.tiptap h4,
+.tiptap h5,
+.tiptap h6 {
+  @apply leading-tight mt-10 text-pretty;
+}
+
+.tiptap h1,
+.tiptap h2 {
+  @apply mt-14 mb-6;
+}
+
+.tiptap h1 {
+  @apply text-[1.4rem];
+}
+
+.tiptap h2 {
+  @apply text-[1.2rem];
+}
+
+.tiptap h3 {
+  @apply text-[1.1rem];
+}
+
+.tiptap h4,
+.tiptap h5,
+.tiptap h6 {
+  @apply text-[1rem];
+}
+
+/* Code and preformatted text styles */
+.tiptap code {
+  @apply bg-purple-200 rounded-md text-black text-[0.85rem] px-2 py-1;
+}
+
+.tiptap pre {
+  @apply bg-black text-white font-mono rounded-lg my-6 p-4;
+}
+
+.tiptap pre code {
+  @apply bg-transparent text-inherit text-[0.8rem] p-0;
+}
+
+/* Blockquote */
+.tiptap blockquote {
+  @apply border-l-4 border-gray-300 my-6 pl-4;
+}
+
+/* Horizontal rule */
+.tiptap hr {
+  @apply border-t border-gray-200 my-8;
+}
+
+
+.control-group {
+  @apply flex justify-center items-center p-4;
+}
+
+.button-group {
+  @apply flex flex-wrap gap-3;
+}
+
+.button-group button {
+  @apply px-4 py-2 text-sm font-medium rounded-full border border-gray-300 bg-white text-gray-700 shadow-sm transition-all duration-200 ease-in-out hover:bg-gray-100 hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed;
+}
+
+.button-group button.is-active {
+  @apply bg-purple-500 text-white border-purple-600 shadow-md hover:bg-purple-600;
+}
+
+
+
+.seperator {
+  @apply border-t border-neutral-700/70 w-full h-[1px];
 }
 
 .vertical {
@@ -149,29 +289,19 @@ hr {
 
 /* button */
 .primary-button {
-  @apply flex items-center justify-center bg-blue-500 text-white py-3 px-4 text-sm tracking-[-0.2px] leading-[120%] font-medium;
+  @apply flex items-center justify-center bg-blue-500 text-white py-3 px-4 text-sm tracking-[-0.2px] leading-[120%] font-medium cursor-pointer;
 }
 
 .secondary-button {
-  @apply flex items-center justify-center bg-red-500 text-white py-3 px-4 text-sm tracking-[-0.2px] leading-[120%] font-medium;
+  @apply flex items-center justify-center bg-red-500 text-white py-3 px-4 text-sm tracking-[-0.2px] leading-[120%] font-medium cursor-pointer;
 }
 
 .neutral-button {
-  @apply flex items-center justify-center dark:text-neutral-500 text-neutral-600 py-3 px-4 text-base tracking-[0.5px] leading-[100%] font-medium border border-none bg-neutral-100 dark:bg-neutral-200;
+  @apply flex items-center justify-center dark:text-neutral-500 text-neutral-600 py-3 px-4 text-base tracking-[0.5px] leading-[100%] font-medium border border-none bg-neutral-100 dark:bg-neutral-200 cursor-pointer;
 }
 
 .tag {
   @apply bg-neutral-200 dark:bg-neutral-700 px-1.5 rounded-sm;
-}
-
-
-/* Modal.css */
-.modal-wrapper {
-  @apply w-[500px] h-[600px];
-}
-
-.modal {
-  @apply bg-white h-full w-full rounded-[15px] p-[15px];
 }
 
 /* styles/globals.css */
@@ -180,5 +310,5 @@ hr {
 }
 
 .modal {
-  @apply bg-blue-500 p-5 rounded-lg h-fit w-fit;
+  @apply bg-neutral-800/50 p-5 rounded-lg h-fit w-fit;
 }

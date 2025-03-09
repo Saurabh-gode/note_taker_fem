@@ -1,12 +1,14 @@
 import React from 'react';
-import chevRon from "@/app/images/icon-chevron-right.svg";
+import ChevRon from "@/app/images/icon-chevron-right.svg";
 
-const MenuItem = ({ icon, content, active }: any) => {
+const MenuItem = ({ icon, content, active, className = "" }: any) => {
     return (
-        <div className=''>
-            {icon}
-            {content}
-            {active && chevRon}
+        <div className={`flex justify-between w-full ${className} `}>
+            <div className='flex items-center gap-2'>
+                {icon}
+                {content}
+            </div>
+            <span>{active && <ChevRon />}</span>
         </div>
     )
 }

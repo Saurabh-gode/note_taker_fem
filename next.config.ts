@@ -1,7 +1,12 @@
 import type { NextConfig } from "next";
+import path from "path";
 
 const nextConfig: NextConfig = {
-  webpack(config) {
+  webpack(config, { isServer }) {
+    if (!isServer) {
+      // Ensure that all imports of 'yjs' resolve to the same instance
+      config.resolve.alias['yjs'] = path.resolve(__dirname, 'node_modules/yjs')
+    }
     // Grab the existing rule that handles SVG imports
     const fileLoaderRule = config.module.rules.find((rule: any) =>
       rule.test?.test?.('.svg'),

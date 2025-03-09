@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import localFont from "next/font/local";
-import { inter } from "./font.config";
-
-const fontInter = inter;
+import { inter, notoSerif, sourceCodePro } from "./font.config";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,9 +13,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en">
       <body
-        className={`${fontInter.className} antialiased`}
+        className={`${inter.className} antialiased`}
       >
         {children}
       </body>
