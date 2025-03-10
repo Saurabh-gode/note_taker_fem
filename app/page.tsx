@@ -1,16 +1,12 @@
 "use client"
-import Button from "@/components/Button";
-import HomeSVG from "@/app/images/icon-home.svg";
 import ArchiveSVG from "@/app/images/icon-archive.svg";
-import NoteItem from "@/components/NoteItem";
-import Logo from "@/components/Logo";
 import { useState } from "react";
 import Modal from "@/components/modal/Modal";
 import ModalContent from "@/components/modal/ModalContent";
 import DesktopSidebar from "@/components/desktopSidebar/DesktopSidebar";
 import DesktopHeader from "@/components/desktopHeader/DesktopHeader";
 import NoteList from "@/components/noteList/NoteList";
-import Tiptap from "@/components/tiptap/Tiptap";
+
 import NoteEditor from "@/components/noteEditor/NoteEditor";
 import { Note } from "@/components/types";
 
@@ -19,8 +15,10 @@ import { Note } from "@/components/types";
 export default function Home() {
 
   const [modalOpen, setModalOpen] = useState(false);
-  const handler = () => setModalOpen(prev => !prev);
+  // const handler = () => setModalOpen(prev => !prev);
 
+
+  // @typescript-eslint/no-unused-vars
   const [notes, setNotes] = useState<Note[]>([
     {
       id: 0,

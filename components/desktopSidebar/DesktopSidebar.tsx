@@ -9,12 +9,12 @@ const DesktopSidebar = () => {
     return (
         <section className="flex flex-row items-start border-r border-neutral-600 h-screen">
             <div
-                className="flex flex-col sidebar-container gap-4 "
+                className="flex flex-col sidebar-container gap-4 w-full px-2"
             >
-                <div className='h-20 py-6'>
+                <div className='h-22 py-6'>
                     <Logo />
                 </div>
-                <div className='flex flex-col gap-4'>
+                <div className='flex flex-col gap-6'>
                     <MenuItem
                         icon={<HomeSVG />}
                         content="All Notes"

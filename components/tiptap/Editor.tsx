@@ -3,6 +3,7 @@
 import { useEditor, EditorContent } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import Placeholder from '@tiptap/extension-placeholder'
+import { useEffect } from 'react'
 
 export const TitleEditor = ({ title }: { title: string }) => {
     const editor = useEditor({
@@ -35,7 +36,14 @@ export const TagsEditor = ({ tags }: { tags: string }) => {
         content: `<p>${tags}</p>`,
         immediatelyRender: false,
 
-    })
+    });
+
+    // Sync content when prop changes
+    useEffect(() => {
+        if (editor && tags !== editor.getHTML()) {
+            editor.commands.setContent(tags, false)
+        }
+    }, [tags, editor])
 
     if (!editor) return null;
 

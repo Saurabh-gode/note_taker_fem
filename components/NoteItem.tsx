@@ -1,10 +1,22 @@
 import React from 'react'
+import { Note } from './types';
 
-const NoteItem = ({ id, title, tags, created_at, onClick, active }: any) => {
+type NoteItemProps = {
+    id: number;
+    title: string;
+    description: string;
+    tags: string[];
+    created_at: string;
+    onClick: (e: Note) => void;
+    active: boolean;
+};
 
-    const clickHandler = (e: any) => {
+const NoteItem = (props: NoteItemProps) => {
+
+    const { id, title, tags, description, created_at, onClick, active } = props;
+    const clickHandler = (e: React.MouseEvent<HTMLDivElement>) => {
         e.stopPropagation();
-        onClick({ id, title, tags, created_at, onClick });
+        onClick({ id, title, created_at, tags, description } as Note);
     }
 
     return (

@@ -1,4 +1,4 @@
-export async function GET(params: any) {
+export async function GET() {
 
     return Response.json([
         { title: "Learning React Basics", tags: ["React", "JavaScript"], created_at: "2025-03-01" },

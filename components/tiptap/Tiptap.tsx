@@ -1,13 +1,12 @@
-
+"use client"
 import { Color } from '@tiptap/extension-color'
 import ListItem from '@tiptap/extension-list-item'
 import TextStyle from '@tiptap/extension-text-style'
-import { EditorProvider, useCurrentEditor } from '@tiptap/react'
+import { Editor, EditorContent, useEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
-import React from 'react'
+import React, { useEffect } from 'react'
 
-const MenuBar = () => {
-    const { editor } = useCurrentEditor()
+const MenuBar = ({ editor }: { editor: Editor }) => {
 
     if (!editor) {
         return null
@@ -183,7 +182,7 @@ const MenuBar = () => {
 
 const extensions = [
     Color.configure({ types: [TextStyle.name, ListItem.name] }),
-    TextStyle.configure({ types: [ListItem.name] }),
+    TextStyle.configure(),
     StarterKit.configure({
         bulletList: {
             keepMarks: true,
@@ -196,8 +195,27 @@ const extensions = [
     }),
 ]
 
-export default ({content, onChange}) => {
+export default function Tiptap({ content, onChange }: any) {
+    const editor = useEditor({
+        extensions,
+        content, // Initialize with initial content
+        onUpdate: onChange,
+        immediatelyRender: false,
+    })
+
+    // Sync editor content when the content prop changes
+    useEffect(() => {
+        if (editor && content !== editor.getHTML()) {
+            editor.commands.setContent(content, false) // Update content without adding history step
+        }
+    }, [content, editor])
+
+    if (!editor) return null
+
     return (
-        <EditorProvider onUpdate={onChange} immediatelyRender={false} slotBefore={<MenuBar />} extensions={extensions} content={content}></EditorProvider>
+        <div>
+            <MenuBar editor={editor} />
+            <EditorContent editor={editor} />
+        </div>
     )
 }
